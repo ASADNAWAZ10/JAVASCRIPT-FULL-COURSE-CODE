@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+    <!-- <div id="images">
+        <li><img src="main.jpg" alt="" id="main" style="width: 200px;"></li>
+     <li><img src="sf.jpg" alt=""  style="width: 200px;"></li>
+    <li><img src="sss_1.png" alt=""  width="200px"></li>
+</div>
+     -->
+</body>
+<script>
+    document.getElementById('main').onclick = function () {
+        alert("it's second method");
+    }
+
+    document.getElementById('main').addEventListener('click', function (e) {
+        alert('the best method for event');
+        console.log(e);
+
+    }, false)
+
+
+    //Even propagations; two-types: event bubbling and event capturing.
+    //bubbleEvent used from bottom to top and caturing is form top to bottom
+    //when we use false it will be bubble and instead of false we use true
+    // it will change to capurting event. so bydefault is also bubble 'false'
+    //if we want to use bubble and stop to move top then we use 'stop propagation()'
+
+    document.getElementById('images').addEventListener('click', function (e) {
+        console.log(e.target.parentNode);
+        if (e.target.tagName === "img") {
+            console.log(e.target.tagName)
+            let removeIt = e.target.parentNode
+            removeIt.remove();  //ist method
+        }
+
+        //removeIt.parentNode.removeChild(removeIt);  //sec method
+    })
+
+</script>
+
+</html>
